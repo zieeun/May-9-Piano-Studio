@@ -156,6 +156,7 @@ section { padding: 100px 7%; }
   background: var(--beige); padding: 48px 36px;
   transition: transform 0.3s, box-shadow 0.3s;
   position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
 }
 .lesson-card::before {
   content: '';
@@ -178,7 +179,10 @@ section { padding: 100px 7%; }
   font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--mint-dark); margin-bottom: 16px;
 }
-.lesson-card p { font-size: 14px; color: var(--text-muted); line-height: 1.85; margin-bottom: 28px; }
+.lesson-card p {
+  font-size: 14px; color: var(--text-muted); line-height: 1.85;
+  margin-bottom: 28px; flex: 1;
+}
 .lesson-price {
   font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--text);
   border-top: 1px solid var(--beige2); padding-top: 20px;

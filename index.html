@@ -203,15 +203,15 @@
     <div class="contact-form fade-in">
       <div class="form-group">
         <label>Name</label>
-        <input type="text" placeholder="Your name">
+        <input id="field-name" type="text" placeholder="Your name">
       </div>
       <div class="form-group">
         <label>Phone</label>
-        <input type="tel" placeholder="Your number">
+        <input id="field-phone" type="tel" placeholder="Your number">
       </div>
       <div class="form-group">
         <label>Lesson Type</label>
-        <select>
+        <select id="field-lesson">
           <option value="">Select</option>
           <option>Beginner Lesson</option>
           <option>Intermediate Lesson</option>
@@ -220,9 +220,9 @@
       </div>
       <div class="form-group">
         <label>Message</label>
-        <textarea rows="4" placeholder="Write your message"></textarea>
+        <textarea id="field-message" rows="4" placeholder="Write your message"></textarea>
       </div>
-      <button class="btn-outline" style="margin-top:8px; width:100%; padding:16px;">Send Message</button>
+      <button id="send-btn" class="btn-outline"style="margin-top:8px; width:100%; padding:16px;">Send Message</button>
     </div>
   </div>
 </section>
@@ -243,10 +243,10 @@
     </div>
   </div>
   <div class="footer-bottom">
-    © 2025 May 9 Piano Studio. All rights reserved.
+    © 2026 May 9 Piano Studio. All rights reserved.
   </div>
 </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
