@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       a.classList.toggle('active', a.getAttribute('href') === '#' + current);
     });
   });
+
   // 햄버거 메뉴
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.querySelector('.nav-links');
