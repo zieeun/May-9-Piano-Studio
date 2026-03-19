@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.isIntersecting) { e.target.classList.add('visible'); }
     });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  const animateElements = document.querySelectorAll('.fade-in, .fade-right, .fade-left');
+  animateElements.forEach(el => observer.observe(el));
 
   // 네비게이션 active 상태
   const sections = document.querySelectorAll('section[id]');
@@ -52,44 +53,44 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // EmailJS Send Message
-  const sendBtn = document.getElementById('send-btn');
-  if (sendBtn) {
-    sendBtn.addEventListener('click', () => {
-      const name       = document.getElementById('field-name').value.trim();
-      const phone      = document.getElementById('field-phone').value.trim();
-      const lessonType = document.getElementById('field-lesson').value;
-      const message    = document.getElementById('field-message').value.trim();
+  // const sendBtn = document.getElementById('send-btn');
+  // if (sendBtn) {
+  //   sendBtn.addEventListener('click', () => {
+  //     const name       = document.getElementById('field-name').value.trim();
+  //     const phone      = document.getElementById('field-phone').value.trim();
+  //     const lessonType = document.getElementById('field-lesson').value;
+  //     const message    = document.getElementById('field-message').value.trim();
 
-      if (!name || !phone || !lessonType || !message) {
-        alert('Please fill in all fields before sending.');
-        return;
-      }
+  //     if (!name || !phone || !lessonType || !message) {
+  //       alert('Please fill in all fields before sending.');
+  //       return;
+  //     }
 
-      sendBtn.disabled = true;
-      sendBtn.textContent = 'Sending...';
+  //     sendBtn.disabled = true;
+  //     sendBtn.textContent = 'Sending...';
 
-      emailjs.send("service_p3erpgr", "template_8b110ew", {
-        name:        name,
-        phone:       phone,
-        lesson_type: lessonType,
-        message:     message,
-      })
-      .then(() => {
-        sendBtn.textContent = 'Message Sent ✓';
-        sendBtn.style.background = 'var(--mint-dark)';
-        sendBtn.style.color = 'white';
-        sendBtn.style.border = 'none';
-        document.getElementById('field-name').value = '';
-        document.getElementById('field-phone').value = '';
-        document.getElementById('field-lesson').value = '';
-        document.getElementById('field-message').value = '';
-      })
-      .catch((err) => {
-        console.error('EmailJS error:', err);
-        sendBtn.textContent = 'Failed. Try Again.';
-        sendBtn.disabled = false;
-      });
-    });
-  }
+  //     emailjs.send("service_p3erpgr", "template_8b110ew", {
+  //       name:        name,
+  //       phone:       phone,
+  //       lesson_type: lessonType,
+  //       message:     message,
+  //     })
+  //     .then(() => {
+  //       sendBtn.textContent = 'Message Sent ✓';
+  //       sendBtn.style.background = 'var(--mint-dark)';
+  //       sendBtn.style.color = 'white';
+  //       sendBtn.style.border = 'none';
+  //       document.getElementById('field-name').value = '';
+  //       document.getElementById('field-phone').value = '';
+  //       document.getElementById('field-lesson').value = '';
+  //       document.getElementById('field-message').value = '';
+  //     })
+  //     .catch((err) => {
+  //       console.error('EmailJS error:', err);
+  //       sendBtn.textContent = 'Failed. Try Again.';
+  //       sendBtn.disabled = false;
+  //     });
+  //   });
+  // }
 
 });
