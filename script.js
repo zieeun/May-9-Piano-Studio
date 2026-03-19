@@ -1,4 +1,14 @@
+// document.addEventListener("DOMContentLoaded", () => {
+
+  // 브라우저의 자동 스크롤 복원 기능을 수동으로 변경 (최상단에 배치)
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  
+  // 페이지 로드 시 스크롤을 맨 위(0, 0)로 이동
+  window.scrollTo(0, 0);
 
   // EmailJS 초기화
   emailjs.init("AgGe-xzTfJSdfVVQc");
