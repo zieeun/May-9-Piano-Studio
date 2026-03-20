@@ -322,13 +322,34 @@ section { padding: 100px 7%; }
   filter: blur(40px);
   opacity: 0.2; z-index: 0;
 }
-.contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+/* ── CONTACT ── */
+.contact-inner { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 80px; 
+  align-items: start;  /* center/end 제거하고 start로 */
+}
+
+.contact-form { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px;
+  padding-top: 96px;  /* section-label + section-title + p 높이만큼 */
+}
+
+/* 모바일에서는 padding-top 제거 */
+@media (max-width: 768px) {
+  .contact-form {
+    padding-top: 0;
+  }
+}
+.contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
 .contact-info p { font-size: 15px; color: var(--text-muted); line-height: 1.9; margin-bottom: 36px; }
 .contact-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; }
 .contact-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint-dark); margin-top: 8px; flex-shrink: 0; }
 .contact-item-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mint-dark); margin-bottom: 4px; }
 .contact-item-val { font-size: 15px; color: var(--text); }
-.contact-form { display: flex; flex-direction: column; gap: 20px; }
+.contact-form { display: flex; flex-direction: column; gap: 20px; justify-content: center; }
 .form-group { display: flex; flex-direction: column; gap: 8px; }
 .form-group label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
 .form-group input, .form-group textarea, .form-group select {
