@@ -1,5 +1,3 @@
-// document.addEventListener("DOMContentLoaded", () => {
-
   // 브라우저의 자동 스크롤 복원 기능을 수동으로 변경 (최상단에 배치)
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
@@ -52,45 +50,54 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // EmailJS Send Message
-  // const sendBtn = document.getElementById('send-btn');
-  // if (sendBtn) {
-  //   sendBtn.addEventListener('click', () => {
-  //     const name       = document.getElementById('field-name').value.trim();
-  //     const phone      = document.getElementById('field-phone').value.trim();
-  //     const lessonType = document.getElementById('field-lesson').value;
-  //     const message    = document.getElementById('field-message').value.trim();
+// EmailJS를 이용한 상담 신청 폼 제출 처리
+const sendBtn = document.getElementById('send-btn');
 
-  //     if (!name || !phone || !lessonType || !message) {
-  //       alert('Please fill in all fields before sending.');
-  //       return;
-  //     }
+if (sendBtn) {
+  sendBtn.addEventListener('click', () => {
+    // 1. 사용자 입력값 가져오기 및 공백 제거(trim)
+    const name       = document.getElementById('field-name').value.trim();
+    const phone      = document.getElementById('field-phone').value.trim();
+    const lessonType = document.getElementById('field-lesson').value;
+    const message    = document.getElementById('field-message').value.trim();
 
-  //     sendBtn.disabled = true;
-  //     sendBtn.textContent = 'Sending...';
+    // 2. 유효성 검사 (모든 필드가 채워졌는지 확인)
+    if (!name || !phone || !lessonType || !message) {
+      alert('Please fill out all fields.');
+      return;
+    }
 
-  //     emailjs.send("service_p3erpgr", "template_8b110ew", {
-  //       name:        name,
-  //       phone:       phone,
-  //       lesson_type: lessonType,
-  //       message:     message,
-  //     })
-  //     .then(() => {
-  //       sendBtn.textContent = 'Message Sent ✓';
-  //       sendBtn.style.background = 'var(--mint-dark)';
-  //       sendBtn.style.color = 'white';
-  //       sendBtn.style.border = 'none';
-  //       document.getElementById('field-name').value = '';
-  //       document.getElementById('field-phone').value = '';
-  //       document.getElementById('field-lesson').value = '';
-  //       document.getElementById('field-message').value = '';
-  //     })
-  //     .catch((err) => {
-  //       console.error('EmailJS error:', err);
-  //       sendBtn.textContent = 'Failed. Try Again.';
-  //       sendBtn.disabled = false;
-  //     });
-  //   });
-  // }
+    // 3. 전송 중 중복 클릭 방지 및 상태 표시
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending...';
+
+    // 4. EmailJS 서비스 호출 (서비스 ID, 템플릿 ID, 전송할 데이터)
+    emailjs.send("service_p3erpgr", "template_ashkx9l", {
+      name:        name,
+      phone:       phone,
+      lesson_type: lessonType,
+      message:     message,
+    })
+    .then(() => {
+      // 5. 전송 성공 시 UX 처리: 버튼 UI 변경 및 입력란 초기화
+      sendBtn.textContent = 'Message Sent ✓';
+      sendBtn.style.background = 'var(--mint-dark)';
+      sendBtn.style.color = 'white';
+      sendBtn.style.border = 'none';
+
+      // 폼 데이터 리셋
+      document.getElementById('field-name').value = '';
+      document.getElementById('field-phone').value = '';
+      document.getElementById('field-lesson').value = '';
+      document.getElementById('field-message').value = '';
+    })
+    .catch((err) => {
+      // 6. 전송 실패 시 에러 로그 출력 및 버튼 복구
+      console.error('EmailJS Error:', err);
+      sendBtn.textContent = 'Failed to send. Please try again.';
+      sendBtn.disabled = false;
+    });
+  });
+}
 
 });
