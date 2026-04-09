@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.scrollTo(0, 0);
 
   // EmailJS 초기화
-  emailjs.init("AgGe-xzTfJSdfVVQc");
+  emailjs.init("44vfXE78c-D-AATz-");
 
   // 스크롤 페이드인
   const observer = new IntersectionObserver((entries) => {
