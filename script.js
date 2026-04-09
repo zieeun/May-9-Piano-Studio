@@ -72,7 +72,7 @@ if (sendBtn) {
     sendBtn.textContent = 'Sending...';
 
     // 4. EmailJS 서비스 호출 (서비스 ID, 템플릿 ID, 전송할 데이터)
-    emailjs.send("service_p3erpgr", "template_ashkx9l", {
+    emailjs.send("service_7x1pr09", "template_ashkx9l", {
       name:        name,
       phone:       phone,
       lesson_type: lessonType,
