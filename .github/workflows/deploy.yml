@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create config.js from secrets
+        run: |
+          cat > config.js << 'EOF'
+          const EMAILJS_CONFIG = {
+            publicKey:  "EMAILJS_PUBLIC_KEY_PLACEHOLDER",
+            serviceId:  "EMAILJS_SERVICE_ID_PLACEHOLDER",
+            templateId: "EMAILJS_TEMPLATE_ID_PLACEHOLDER",
+          };
+          EOF
+          sed -i "s/EMAILJS_PUBLIC_KEY_PLACEHOLDER/${{ secrets.EMAILJS_PUBLIC_KEY }}/" config.js
+          sed -i "s/EMAILJS_SERVICE_ID_PLACEHOLDER/${{ secrets.EMAILJS_SERVICE_ID }}/" config.js
+          sed -i "s/EMAILJS_TEMPLATE_ID_PLACEHOLDER/${{ secrets.EMAILJS_TEMPLATE_ID }}/" config.js
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
